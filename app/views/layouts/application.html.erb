@@ -8,6 +8,8 @@
 </head>
 <body>
 <p>
+  <%= link_to "Home", root_path %>
+  |
   <% if current_user %>
     Welcome, <%= current_user.name %>
       |
@@ -17,6 +19,8 @@
       |
     <%= link_to 'Sign Up', new_user_path %>
   <% end %>
+  |
+  <%= link_to "All Users", users_path %>
 </p>
 <h1>TWITER ON RAILS</h1>
 <%= yield %>
