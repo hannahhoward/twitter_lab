@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'tweets#index'
   resources :users, only:[:new, :create, :show, :index]
-  resources :tweets
+  resources :tweets, except: [:new]
   resources :sessions, only: [:new, :create, :destroy]
   resources :follows, only: [:create, :destroy]
   get '/login', to: 'sessions#new'

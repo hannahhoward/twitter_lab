@@ -1,7 +1,17 @@
-<h1>Users in the system</h1>
-
-<ul>
-  <% @users.each do |user| %>
-    <li><%= user.name %><%= link_to "Show Profile", user %></li>
-  <% end %>
-</ul>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th colspan="2">
+        Who's In The System
+      </th>
+    </tr>
+  </thead>
+  <tbody data-link="row" class="rowlink">
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= gravatar_for(user, 96, true) %></td>
+        <td><%= link_to user.name, user %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

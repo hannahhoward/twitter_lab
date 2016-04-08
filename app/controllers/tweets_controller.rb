@@ -6,7 +6,10 @@ class TweetsController < ApplicationController
   # GET /tweets.json
   def index
     if current_user
-      @tweets = Tweet.from_users_followed_by(@current_user)
+      @tweet = Tweet.new
+      following_ids = current_user.following.select(:id).map(&:id)
+      following_ids.push(current_user.id)
+      @tweets = Tweet.joins(:user).where(:users => {:id => following_ids})
     else
       @tweets = Tweet.all
     end
@@ -15,11 +18,6 @@ class TweetsController < ApplicationController
   # GET /tweets/1
   # GET /tweets/1.json
   def show
-  end
-
-  # GET /tweets/new
-  def new
-    @tweet = Tweet.new
   end
 
   # GET /tweets/1/edit
@@ -34,10 +32,10 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Tweet was successfully created.' }
         format.json { render :show, status: :created, location: @tweet }
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
       end
     end
