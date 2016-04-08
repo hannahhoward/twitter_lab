@@ -21,5 +21,4 @@ test:
   database: twitter_lab_test
 
 production:
-  <<: *default
-  database: twitter_lab_prod
+  url: <%= ENV['DATABASE_URL'] %>
