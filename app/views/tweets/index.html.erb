@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<% if current_user %>
+<h1>Listing Tweets From People You're Following</h1>
+<% else %>
 <h1>Listing Tweets</h1>
+<% end %>
 
 <table id="tweets">
 

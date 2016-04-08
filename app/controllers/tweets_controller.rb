@@ -5,7 +5,11 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.all
+    if current_user
+      @tweets = Tweet.from_users_followed_by(@current_user)
+    else
+      @tweets = Tweet.all
+    end
   end
 
   # GET /tweets/1
