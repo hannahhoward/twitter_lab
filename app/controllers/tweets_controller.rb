@@ -13,6 +13,7 @@ class TweetsController < ApplicationController
     else
       @tweets = Tweet.all
     end
+    @tweets = @tweets.order("created_at DESC")
   end
 
   # GET /tweets/1
