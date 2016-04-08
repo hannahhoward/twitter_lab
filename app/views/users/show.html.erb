@@ -27,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @user.tweets.each do |tweet| %>
+        <% @user.tweets.order("created_at DESC").each do |tweet| %>
           <tr>
             <td><%= gravatar_for(tweet.user, 64, true) %>
             </td>
